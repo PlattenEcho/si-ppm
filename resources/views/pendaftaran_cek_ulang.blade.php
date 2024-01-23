@@ -3,7 +3,7 @@
 @section('body')
     <section>
         <div class=" overflow-y-auto flex h-auto dark:bg-gray-900">
-            <div class="max-w-5xl container px-6 pb-6 mx-auto">
+            <div class="max-w-5xl min-w-[64rem] container px-6 pb-6 mx-auto">
                 <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Pendaftaran
                 </h2>
@@ -105,6 +105,25 @@
                                             class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                Jenjang
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                :
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                @if ($mergedData['jenjang'] == 1)
+                                                    SMK
+                                                @elseif ($mergedData['jenjang'] == 2)
+                                                    S1
+                                                @elseif ($mergedData['jenjang'] == 3)
+                                                    Lainnya
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr
+                                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                            <th scope="row"
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 Universitas
                                             </th>
                                             <td class="px-6 py-4">
@@ -144,16 +163,22 @@
                                             class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                Divisi
+                                                Bidang
                                             </th>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 :
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                @if ($mergedData['divisi'] == 1)
-                                                    Informatika
+                                                @if ($mergedData['bidang'] == 1)
+                                                    Bidang Komunikasi
+                                                @elseif ($mergedData['bidang'] == 2)
+                                                    Bidang Informatika
+                                                @elseif ($mergedData['bidang'] == 3)
+                                                    Bidang Media
+                                                @elseif ($mergedData['bidang'] == 4)
+                                                    Bidang Infrastruktur
                                                 @else
-                                                    Media
+                                                    Bidang Statistik
                                                 @endif
                                             </td>
                                         </tr>
@@ -184,8 +209,8 @@
                                             <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
                                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2"
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
                                                     d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                             </svg>
                                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">

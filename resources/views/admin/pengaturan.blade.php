@@ -12,7 +12,7 @@
                 <h4 class="mb-6 text-base font-semibold text-gray-700 dark:text-gray-200">
                     Pengaturan Pendaftaran
                 </h4>
-                <form action="/pendaftaran" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.savePengaturan') }}" method="POST">
                     @csrf
                     <div class="grid gap-4 mb-4 sm:grid-cols-2">
                         <div>
@@ -21,12 +21,14 @@
                             <div class="grid gap-4 sm:grid-cols-2">
                                 <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
                                     <input id="buka" type="radio" value="1" name="buka_tidak"
+                                        {{ optional($pengaturan)->buka_tidak == 1 ? 'checked' : '' }}
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     <label for="buka"
                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Buka</label>
                                 </div>
                                 <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
                                     <input id="tidak" type="radio" value="0" name="buka_tidak"
+                                        {{ optional($pengaturan)->buka_tidak == 1 ? '' : 'checked' }}
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     <label for="tidak"
                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak</label>
@@ -43,7 +45,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kuota</label>
                             <input type="number" name="kuota" id="kuota"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                required="">
+                                value="{{ optional($pengaturan)->kuota }}" required="">
                             @error('kuota')
                                 <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
                                     {{ $message }}</p>
@@ -54,9 +56,9 @@
                         <div>
                             <label for="tanggal_buka"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Buka</label>
-                            <input type="date" name="tanggal_buka" id="tanggal_buka"
+                            <input type="datetime-local" name="tanggal_buka" id="tanggal_buka"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                required="">
+                                value="{{ optional($pengaturan)->tanggal_buka }}" required="">
                             @error('tanggal_buka')
                                 <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
                                     {{ $message }}</p>
@@ -65,10 +67,10 @@
                         <div>
                             <label for="tanggal_tutup"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Tutup</label>
-                            <input type="date" name="tanggal_tutup" id="tanggal_tutup"
+                            <input type="datetime-local" name="tanggal_tutup" id="tanggal_tutup"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                required="">
-                            @error('no_telp')
+                                value="{{ optional($pengaturan)->tanggal_tutup }}" required="">
+                            @error('tanggal_tutup')
                                 <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
                                     {{ $message }}</p>
                             @enderror

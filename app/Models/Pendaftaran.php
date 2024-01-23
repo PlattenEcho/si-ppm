@@ -23,7 +23,7 @@ class Pendaftaran extends Model
         'motivasi',
         'rencana_kegiatan',
         'status_pendaftaran',
-        'divisi',
+        'bidang',
         'scan_ktm',
         'surat_pengantar'
     ];
@@ -45,8 +45,11 @@ class Pendaftaran extends Model
     {
         return collect(
             [
-                ['divisi' => 1, 'label' => 'Informatika'],
-                ['divisi' => 2, 'label' => 'Media'],
+                ['bidang' => 1, 'label' => 'Komunikasi'],
+                ['bidang' => 2, 'label' => 'Informatika'],
+                ['bidang' => 3, 'label' => 'Media'],
+                ['bidang' => 4, 'label' => 'Infrastruktur'],
+                ['bidang' => 5, 'label' => 'Statistika'],
             ]
         );
 
@@ -73,7 +76,6 @@ class Pendaftaran extends Model
             1 => 'SMK',
             2 => 'S1',
             3 => 'Lainnya',
-            // Add more codes if needed
         ];
 
         return $jenjangCodes[$value] ?? 'Unknown';

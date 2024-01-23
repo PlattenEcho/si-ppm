@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\StatusPendaftaranMail;
 use App\Models\Pendaftaran;
 use App\Models\RiwayatPendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Mail;
 
-class MahasiswaController extends Controller
+class PendaftaranController extends Controller
 {
     public function viewPendaftaran()
     {
@@ -22,9 +24,9 @@ class MahasiswaController extends Controller
         return view('pendaftaran');
     }
 
-    public function viewPilihDivisi()
+    public function viewPilihBidang()
     {
-        return view('pendaftaran_pilih_divisi');
+        return view('pendaftaran_pilih_bidang');
     }
     public function storeDataDiri(Request $request)
     {
@@ -53,13 +55,13 @@ class MahasiswaController extends Controller
 
         session()->put('dataDiri', $validatedData);
 
-        return redirect('/pendaftaran/pilih-divisi');
+        return redirect('/pendaftaran/pilih-bidang');
     }
 
-    public function storePilihDivisi(Request $request)
+    public function storePilihBidang(Request $request)
     {
         $validatedData = $request->validate([
-            'divisi' => 'required|in:1,2',
+            'bidang' => 'required|in:1,2,3,4,5',
         ]);
 
         $dataDiri = session()->get('dataDiri');
@@ -82,25 +84,28 @@ class MahasiswaController extends Controller
         $mergedData['id_user'] = auth()->user()->id;
 
         $timestamp = Carbon::now();
-        $division = $mergedData['divisi'];
+        $bidang = $mergedData['bidang'];
         $count = Pendaftaran::whereYear('created_at', $timestamp)
             ->whereMonth('created_at', $timestamp)
-            ->where('divisi', $division)
+            ->where('bidang', $bidang)
             ->count();
 
         $count++;
 
-        $idPendaftaran = sprintf('%s%02d%03d', $timestamp->format('Ym'), $division, $count);
+        $idPendaftaran = sprintf('%s%02d%03d', $timestamp->format('Ym'), $bidang, $count);
 
         $mergedData['id_pendaftaran'] = $idPendaftaran;
         Pendaftaran::create($mergedData);
         session()->forget(['dataDiri', 'dataComplete']);
 
         RiwayatPendaftaran::create([
-            'id_pendaftaran' => $mergedData->id_pendaftaran,
+            'id_pendaftaran' => $mergedData['id_pendaftaran'],
             'status_pendaftaran' => 1,
-            'catatan' => "Mohon tunggu untuk proses verifikasi",
+            'catatan' => "Mohon tunggu untuk proses verifikasi.",
         ]);
+
+        Mail::to($mergedData['email'])->send(new StatusPendaftaranMail($mergedData['name'], 'Menunggu Verifikasi'));
+
 
         return redirect('/pendaftaran/cek-status')->with("success", "Pendaftaran berhasil disubmit!");
 

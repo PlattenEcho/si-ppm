@@ -68,8 +68,8 @@ final class PendaftaranTable extends PowerGridComponent
             ->addColumn('rencana_kegiatan')
             ->addColumn('status_pendaftaran')
             ->addColumn('status_pendaftaran_label', fn($model) => Pendaftaran::statusCodes()->firstWhere('status_pendaftaran', $model->status_pendaftaran)['label'])
-            ->addColumn('divisi_label', fn($model) => Pendaftaran::codes()->firstWhere('divisi', $model->divisi)['label'])
-            ->addColumn('divisi')
+            ->addColumn('bidang_label', fn($model) => Pendaftaran::codes()->firstWhere('bidang', $model->bidang)['label'])
+            ->addColumn('bidang')
             ->addColumn('scan_ktm')
             ->addColumn('surat_pengantar')
             ->addColumn('created_at_formatted', fn(Pendaftaran $model) => Carbon::parse($model->created_at)->format('d/m/Y'));
@@ -85,12 +85,10 @@ final class PendaftaranTable extends PowerGridComponent
             Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Universitas', 'universitas')
-                ->sortable()
-                ->searchable(),
+            Column::make('Universitas', 'universitas'),
             Column::add()
-                ->title('Divisi')
-                ->field('divisi_label', 'divisi'),
+                ->title('Bidang')
+                ->field('bidang_label', 'bidang'),
             Column::add()
                 ->title('Status Pendaftaran')
                 ->field('status_pendaftaran_label', 'status_pendaftaran'),
@@ -111,9 +109,9 @@ final class PendaftaranTable extends PowerGridComponent
                 ->dataSource(Pendaftaran::select('universitas')->distinct()->get()->toArray())
                 ->optionValue('universitas')
                 ->optionLabel('universitas'),
-            Filter::select('divisi', 'divisi')
+            Filter::select('bidang', 'bidang')
                 ->dataSource(Pendaftaran::codes())
-                ->optionValue('divisi')
+                ->optionValue('bidang')
                 ->optionLabel('label'),
             Filter::inputText('email')->operators(['contains']),
             Filter::inputText('no_telp')->operators(['contains']),

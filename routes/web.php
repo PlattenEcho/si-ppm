@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PendaftaranController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,15 +55,15 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin', 'viewDashboardAdmin')->middleware('admin')->name('admin.dashboard');
     Route::get('/admin/daftar-peserta', 'viewDaftarPeserta')->middleware('admin')->name('admin.daftarPeserta');
     Route::get('/admin/pengaturan', 'viewPengaturan')->middleware('admin')->name('admin.pengaturan');
-
+    Route::post('/admin/pengaturan', 'savePengaturan')->name('admin.savePengaturan');
 });
 
-Route::controller(MahasiswaController::class)->group(function () {
+Route::controller(PendaftaranController::class)->group(function () {
     Route::get('/pendaftaran', 'viewPendaftaran')->name('pendaftaran');
     Route::post('/pendaftaran', 'storeDataDiri')->name('storeDataDiri');
 
-    Route::get('/pendaftaran/pilih-divisi', 'viewPilihDivisi')->middleware('auth', 'checkDataDiri')->name('formPilihDivisi');
-    Route::post('/pendaftaran/pilih-divisi', 'storePilihDivisi')->name('storePilihDivisi');
+    Route::get('/pendaftaran/pilih-bidang', 'viewPilihBidang')->middleware('auth', 'checkDataDiri')->name('formPilihBidang');
+    Route::post('/pendaftaran/pilih-bidang', 'storePilihBidang')->name('storePilihBidang');
 
     Route::get('/pendaftaran/cek-ulang', 'viewCekUlang')->middleware('auth', 'checkDataComplete')->name('formCekUlang');
     Route::post('/pendaftaran/cek-ulang', 'storePendaftaran')->name('storePendaftaran');
