@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'mahasiswa' => \App\Http\Middleware\CheckMahasiswa::class,
         'checkDataDiri' => \App\Http\Middleware\CheckDataDiri::class,
         'checkDataComplete' => \App\Http\Middleware\CheckDataComplete::class,
-        'checkPendaftaran' => \App\Http\Middleware\CheckPendaftaran::class
+        'checkPendaftaran' => \App\Http\Middleware\CheckPendaftaran::class,
+        'isVerified' => \App\Http\Middleware\IsVerified::class,
     ];
 }

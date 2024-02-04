@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\StatusPendaftaranMail;
 use App\Models\Pendaftaran;
 use App\Models\RiwayatPendaftaran;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +21,31 @@ class PendaftaranController extends Controller
                 return redirect('/pendaftaran/cek-status');
             }
         }
+        
+        $pengaturan = DB::table('pengaturan')->first();
 
-        return view('pendaftaran');
+        $toDate = Carbon::parse($pengaturan->tanggal_tutup);
+        $fromDate = Carbon::now();
+        $days = $toDate->diffInDays($fromDate);
+    
+        if ($pengaturan->buka_tidak == 1) {
+            $countPendaftaran = Pendaftaran::whereBetween('created_at', [$pengaturan->tanggal_buka, $pengaturan->tanggal_tutup])->count();
+            if ($countPendaftaran >= $pengaturan->kuota) {
+                $status = 2; //Kuota Habis
+            }else if($pengaturan->kuota - $countPendaftaran < 30){
+                $status = 0; //Kuota Hampir Habis
+            } else if($days < 10 &&  !$toDate->isPast()){
+                $status = 4; //Hampir tutup
+            } else if($toDate->isPast()){
+                $status = 2;//Ditutup
+            }
+            else {
+                $status = 1; //Kuota Ada
+            }
+        } else {
+            $status = 2; //Pendaftaran Ditutup
+        }
+        return view('pendaftaran', compact('status'));
     }
 
     public function viewPilihBidang()
@@ -120,10 +144,21 @@ class PendaftaranController extends Controller
         }
 
         $pendaftaran = $user->pendaftaran;
+        $riwayatPendaftaran = $pendaftaran->riwayatPendaftaran->sortByDesc('created_at');
 
-        $riwayatPendaftaran = $pendaftaran->riwayatPendaftaran;
+        $diterima = $riwayatPendaftaran->where('status_pendaftaran', 'Diterima');
+        $ditolak = $riwayatPendaftaran->where('status_pendaftaran', 'Ditolak');
+        $lastRiwayatPendaftaran = $riwayatPendaftaran->first();
 
-        return view('pendaftaran_cek_status', ['pendaftaran' => $pendaftaran, 'riwayatPendaftaran' => $riwayatPendaftaran]);
+        $count = $riwayatPendaftaran->count();
+        $riwayatPendaftaran = $riwayatPendaftaran->slice($count-1);
+
+        return view('pendaftaran_cek_status', [
+            'riwayatPendaftaran' => $riwayatPendaftaran,
+            'lastRiwayatPendaftaran' => $lastRiwayatPendaftaran,
+            'diterima' => $diterima,
+            'ditolak' => $ditolak,
+        ]);
     }
 
 }

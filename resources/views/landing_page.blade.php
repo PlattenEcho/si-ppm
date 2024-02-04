@@ -3,15 +3,42 @@
 @section('body')
     <section
         class="bg-center bg-cover bg-no-repeat bg-[url('https://i.ytimg.com/vi/HQRrZXaqhVE/maxresdefault.jpg')] bg-gray-700 bg-blend-multiply">
-        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-48">
+            <div class="justify-center flex items-center">
+                @if ($status == 0)
+                    <p class="bg-red-600 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
+                        Kuota Pendaftaran Habis!
+                    </p>
+                @elseif($status == 1)
+                    <p class="bg-green-500 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
+                        Pendaftaran Dibuka!
+                        <br>
+                        Tutup: {{ date('d/m/Y - H:i ', strtotime($tutup)) }}
+                    </p>
+                @elseif($status == 4)
+                    <p class="bg-red-600 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
+                        Pendaftaran Hampir Tutup!
+                        <br>
+                        Tutup: {{ date('d/m/Y - H:i ', strtotime($tutup)) }}
+                    </p>
+                @else
+                    <p class="bg-red-600 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
+                        Pendaftaran Ditutup!
+                        <br>
+                        Tutup: {{ date('d/m/Y - H:i ', strtotime($tutup)) }}
+                    </p>
+                @endif
+            </div>
+
+
+
             @auth
                 <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Welcome
                     Back {{ auth()->user()->name }}</h1>
             @else
                 <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">We
-                    invest in the world’s potential</h1>
+                    invest in the world’s potential </h1>
             @endauth
-
             <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Here at Flowbite we focus on
                 markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
             <div class="flex flex-col space-x-4 sm:flex-row sm:justify-center sm:space-y-0">

@@ -7,6 +7,7 @@
                 <div class="max-w-5xl container px-6 pb-6 mx-auto">
                     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                         Pendaftaran
+                        {{ $status }}
                     </h2>
                     <div class="flex flex-row space-x-">
                         <div class="basis-1/4 pr-8">{{-- Stepper --}}
@@ -17,6 +18,43 @@
                             <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
                                 Data Diri
                             </h4>
+                            @if ($status == 0)
+                                <div id="alert-additional-content-3"
+                                    class="p-4 mb-4 text-white border border-green-300 rounded-lg bg-red-600" role="alert">
+                                    <div class="flex items-center">
+                                        <span class="sr-only">Info</span>
+                                        <h3 class="text-xl font-bold">Kuota hampir habis!</h3>
+                                    </div>
+                                    <div class="mt-2 mb-4 text-sm">
+                                        Silahkan segera melakukan pendaftaran sebelum kuota habis.
+                                    </div>
+                                    <div class="flex">
+                                        <button type="button"
+                                            class="border-gray-200 text-gray-800 bg-white border hover:bg-gray-100 hover:text-black focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-green-600 dark:border-green-600 dark:text-green-400 dark:hover:text-white dark:focus:ring-green-800"
+                                            data-dismiss-target="#alert-additional-content-3" aria-label="Close">
+                                            Sembunyikan
+                                        </button>
+                                    </div>
+                                </div>
+                            @elseif($status == 4)
+                                <div id="alert-additional-content-3"
+                                    class="p-4 mb-4 text-white border border-green-300 rounded-lg bg-red-600" role="alert">
+                                    <div class="flex items-center">
+                                        <span class="sr-only">Info</span>
+                                        <h3 class="text-xl font-bold">Pendaftaran hampir tutup!</h3>
+                                    </div>
+                                    <div class="mt-2 mb-4 text-sm">
+                                        Silahkan segera melakukan pendaftaran sebelum pendaftaran ditutup.
+                                    </div>
+                                    <div class="flex">
+                                        <button type="button"
+                                            class="border-gray-200 text-gray-800 bg-white border hover:bg-gray-100 hover:text-black focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-green-600 dark:border-green-600 dark:text-green-400 dark:hover:text-white dark:focus:ring-green-800"
+                                            data-dismiss-target="#alert-additional-content-3" aria-label="Close">
+                                            Sembunyikan
+                                        </button>
+                                    </div>
+                                </div>
+                            @endif
                             <div class=" justify-between px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                                 <form action="/pendaftaran" method="POST" enctype="multipart/form-data">
                                     @csrf

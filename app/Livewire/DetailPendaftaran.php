@@ -20,7 +20,7 @@ class DetailPendaftaran extends ModalComponent
 
     protected $rules = [
         'selectedStatus' => 'required|in:1,2,3,4,5,6,7,8,9',
-        'catatan' => 'required|string|max:255',
+        'catatan' => 'string|max:255|nullable',
     ];
 
     public function mount($pendaftaranId)
