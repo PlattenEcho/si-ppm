@@ -114,8 +114,6 @@
                                     document.addEventListener('DOMContentLoaded', function() {
                                         const passwordInput = document.getElementById('confirmPassword');
                                         const togglePasswordButton = document.getElementById('toggleConfirmPassword');
-
-                                        // Toggle password visibility
                                         togglePasswordButton.addEventListener('click', function() {
                                             if (passwordInput.type === 'password') {
                                                 passwordInput.type = 'text';

@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(
             StatusPendaftaranSeeder::class,
         );
+        $this->call(PengumumanSeeder::class);
     }
 }

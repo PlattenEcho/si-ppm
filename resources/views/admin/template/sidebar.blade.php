@@ -3,7 +3,7 @@
     <div class="py-4 text-gray-500 dark:text-gray-400">
         <a class="mx-6 text-xl font-bold text-gray-800 dark:text-gray-200 flex items-center" href="#">
             <img class="w-auto h-8 mr-2"
-                src="https://diskominfo.majalengkakab.go.id/wp-content/uploads/2017/05/cropped-logo-diskominfo.png"
+                src="https://www.its.ac.id/wp-content/uploads/2021/10/logo-kominfo-transparent.png"
                 alt="SIPPM Logo">
             SIPPM
         </a>

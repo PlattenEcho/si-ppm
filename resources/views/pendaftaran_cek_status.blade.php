@@ -16,32 +16,32 @@
                         <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
                             Cek Status
                         </h4>
-                        @if (!$diterima->isEmpty() )
+                        @if (!$diterima->isEmpty())
                             <div id="alert-additional-content-3"
                                 class="p-4 mb-4 text-white border border-green-300 rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
                                 role="alert">
                                 <img class="mb-4 object-cover rounded-md w-full max-h-[16rem]"
-                                    src="https://i.pinimg.com/originals/39/87/be/3987beb4289cf7a45b94e2e2a73aaeb9.jpg"
-                                    alt="">
+                                    src=" {{ ($pengumuman->image) }}" alt="">
                                 <div class="flex items-center">
                                     <span class="sr-only">Info</span>
-                                    <h3 class="text-xl font-bold">Selamat anda diterima!</h3>
+                                    <h3 class="text-xl font-bold">{{ $pengumuman->title }}</h3>
                                 </div>
                                 <div class="mt-2 mb-4 text-sm">
                                     Silahkan kontak nomor untuk konfirmasi lebih lanjut <p class="font-semibold">
-                                        0821-6999-2772
-                                        (Hanry Sugihastomo)</p>
+                                        {{ $pengumuman->no_telp }}
+                                        ({{ $pengumuman->nama_kontak }})</p>
                                     Atau kunjungi Kantor Dinas Komunikasi, Informatika, Statistik dan Persandian Kota
                                     Semarang
                                 </div>
                                 <div class="flex">
-                                    <a href="">
+                                    <a href="http://{{$pengumuman->link}}">
                                         <button type="button"
-                                            class="text-green-800 bg-white hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                            <svg class="me-2 h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor" viewBox="0 0 20 14">
-                                                <path
-                                                    d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
+                                            class="text-green-800 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                            <svg class="me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path fill-rule="evenodd"
+                                                    d="M3 6c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 1.9h-6.6l-2.9 2.7c-1 .9-2.5.2-2.5-1v-1.7H5a2 2 0 0 1-2-2V6Zm5.7 3.8a1 1 0 1 0-1.4 1.4 1 1 0 1 0 1.4-1.4Zm2.6 0a1 1 0 1 1 0 1.4 1 1 0 0 1 0-1.4Zm5.4 0a1 1 0 1 0-1.4 1.4 1 1 0 1 0 1.4-1.4Z"
+                                                    clip-rule="evenodd" />
                                             </svg>
                                             WhatsApp
                                         </button>
@@ -58,7 +58,7 @@
                             </div>
                         @endif
 
-                        @if (!$ditolak->isEmpty() )
+                        @if (!$ditolak->isEmpty())
                             <div id="alert-additional-content-3"
                                 class="p-4 mb-4 text-white border border-green-300 rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
                                 role="alert">
@@ -67,7 +67,7 @@
                                     alt="">
                                 <div class="flex items-center">
                                     <span class="sr-only">Info</span>
-                                    <h3 class="text-xl font-bold">Selamat anda diterima!</h3>
+                                    <h3 class="text-xl font-bold">Selamat anda ditolak!</h3>
                                 </div>
                                 <div class="mt-2 mb-4 text-sm">
                                     Silahkan kontak nomor untuk konfirmasi lebih lanjut <p class="font-semibold">
@@ -157,6 +157,7 @@
                                                         stroke-linejoin="round" stroke-width="2"
                                                         d="M1 5.917 5.724 10.5 15 1.5" />
                                                 </svg>
+                                            </span>
                                         @endif
                                     @else
                                         <span
@@ -166,6 +167,7 @@
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                                     stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                             </svg>
+                                        </span>
                                     @endif
 
 

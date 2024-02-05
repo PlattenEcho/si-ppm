@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
 use App\Models\Pengaturan;
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -33,8 +34,8 @@ class AdminController extends Controller
     public function viewPengaturan()
     {
         $pengaturan = Pengaturan::first();
-
-        return view('admin.pengaturan', compact('pengaturan'));
+        $pengumuman = Pengumuman::first();
+        return view('admin.pengaturan', compact('pengaturan', 'pengumuman'));
     }
 
     public function savePengaturan(Request $request)
@@ -55,5 +56,26 @@ class AdminController extends Controller
         }
 
         return redirect('/admin/pengaturan')->with("success", "Pengaturan berhasil diubah");
+    }
+
+    public function updatePengumuman(Request $request)
+    {
+        $validatedData = $request->validate(
+            [
+                'title' => 'required|string',
+                'no_telp' => 'required|numeric',
+                'nama_kontak' => 'required|string',
+                'link' => 'required|string',
+                'image' => 'required|mimes:jpg,jpeg,png|max:4096',
+            ]
+        );
+
+        $imageExtension = $request->file('image')->extension();
+        $imageName = 'image_pengumuman.' . $imageExtension;
+        $validatedData['image'] = $request->file('image')->storeAs('image_pengumuman', $imageName, 'public');
+        
+        Pengumuman::first()->update($validatedData);
+
+        return redirect('/admin/pengaturan')->with("success", "Pengumuman berhasil diubah");
     }
 }

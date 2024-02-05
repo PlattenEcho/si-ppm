@@ -88,6 +88,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/daftar-peserta', 'viewDaftarPeserta')->middleware('admin')->name('admin.daftarPeserta');
     Route::get('/admin/pengaturan', 'viewPengaturan')->middleware('admin')->name('admin.pengaturan');
     Route::post('/admin/pengaturan', 'savePengaturan')->name('admin.savePengaturan');
+    Route::post('/admin/pengumuman', 'updatePengumuman' )->name('admin.updatePengumuman');
 });
 
 Route::controller(PendaftaranController::class)->group(function () {

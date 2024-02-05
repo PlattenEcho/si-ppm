@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\StatusPendaftaranMail;
 use App\Models\Pendaftaran;
+use App\Models\Pengumuman;
 use App\Models\RiwayatPendaftaran;
 use DB;
 use Illuminate\Http\Request;
@@ -64,7 +65,7 @@ class PendaftaranController extends Controller
             'alamat' => 'required|string|max:255',
             'motivasi' => 'required|string',
             'rencana_kegiatan' => 'required|string',
-            'scan_ktm' => 'required|required|mimes:jpeg,png,pdf|max:4096',
+            'scan_ktm' => 'required|mimes:jpeg,png,pdf|max:4096',
             'surat_pengantar' => 'required|mimes:jpeg,png,pdf|max:4096',
         ]);
 
@@ -138,6 +139,7 @@ class PendaftaranController extends Controller
     public function viewCekStatus()
     {
         $user = Auth::user();
+        $pengumuman = Pengumuman::first();
 
         if (!$user->pendaftaran()->exists()) {
             return redirect('/pendaftaran')->with("error", "Anda belum mendaftar!");
@@ -154,6 +156,7 @@ class PendaftaranController extends Controller
         $riwayatPendaftaran = $riwayatPendaftaran->slice($count-1);
 
         return view('pendaftaran_cek_status', [
+            'pengumuman' => $pengumuman,
             'riwayatPendaftaran' => $riwayatPendaftaran,
             'lastRiwayatPendaftaran' => $lastRiwayatPendaftaran,
             'diterima' => $diterima,

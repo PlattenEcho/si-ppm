@@ -25,7 +25,7 @@
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <div class="mb-5">
                         <img class="w-24 h-24 mx-auto mb-4"
-                            src="https://diskominfo.majalengkakab.go.id/wp-content/uploads/2017/05/cropped-logo-diskominfo.png"
+                            src="https://www.its.ac.id/wp-content/uploads/2021/10/logo-kominfo-transparent.png"
                             alt="logo">
                         <a href="#"
                             class="flex text-center mb-6 text-2xl font-bold text-gray-900 dark:text-white">
