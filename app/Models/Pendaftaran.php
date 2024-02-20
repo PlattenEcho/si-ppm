@@ -98,4 +98,16 @@ class Pendaftaran extends Model
         return $statusCodes[$this->attributes['status_pendaftaran']] ?? 'Unknown Status';
     }
 
+    public function getBidangAttribute()
+    {
+        $bidangCodes = [
+            1 => 'Komunikasi',
+            2 => 'Informatika',
+            3 => 'Media',
+            4 => 'Infrastruktur',
+            5 => 'Statistika',
+        ];
+
+        return $bidangCodes[$this->attributes['bidang']] ?? 'Unknown Bidang';
+    }
 }

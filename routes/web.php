@@ -86,6 +86,8 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/dashboard', 'viewDashboardMahasiswa')->middleware('mahasiswa')->name('mahasiswa.dashboard');
     Route::get('/admin', 'viewDashboardAdmin')->middleware('admin')->name('admin.dashboard');
     Route::get('/admin/daftar-peserta', 'viewDaftarPeserta')->middleware('admin')->name('admin.daftarPeserta');
+    Route::get('/admin/cetak-laporan', 'viewCetakLaporan')->middleware('admin')->name('admin.cetakLaporan');
+    Route::get('/admin/pdf-print', 'viewPDF')->middleware('admin')->name('admin.viewPDF');
     Route::get('/admin/pengaturan', 'viewPengaturan')->middleware('admin')->name('admin.pengaturan');
     Route::post('/admin/pengaturan', 'savePengaturan')->name('admin.savePengaturan');
     Route::post('/admin/pengumuman', 'updatePengumuman' )->name('admin.updatePengumuman');
@@ -115,5 +117,11 @@ Route::get('/view-code-email', function () {
     $kode = '3NSB3';
     $name = 'Mahardika Putra Wardhana';
     $mail = new App\Mail\SendVerificationCodeEmail($name, $kode);
+    return $mail->render();
+});
+
+Route::get('/admin-pendaftaran-mail', function () {
+    $pendaftaran = Pendaftaran::firstorfail();
+    $mail = new App\Mail\AdminPendaftaranMail($pendaftaran);
     return $mail->render();
 });

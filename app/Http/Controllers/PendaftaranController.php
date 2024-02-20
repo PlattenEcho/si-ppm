@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminPendaftaranMail;
 use App\Mail\StatusPendaftaranMail;
 use App\Models\Pendaftaran;
 use App\Models\Pengumuman;
 use App\Models\RiwayatPendaftaran;
+use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -22,25 +24,24 @@ class PendaftaranController extends Controller
                 return redirect('/pendaftaran/cek-status');
             }
         }
-        
+
         $pengaturan = DB::table('pengaturan')->first();
 
         $toDate = Carbon::parse($pengaturan->tanggal_tutup);
         $fromDate = Carbon::now();
         $days = $toDate->diffInDays($fromDate);
-    
+
         if ($pengaturan->buka_tidak == 1) {
             $countPendaftaran = Pendaftaran::whereBetween('created_at', [$pengaturan->tanggal_buka, $pengaturan->tanggal_tutup])->count();
             if ($countPendaftaran >= $pengaturan->kuota) {
                 $status = 2; //Kuota Habis
-            }else if($pengaturan->kuota - $countPendaftaran < 30){
+            } else if ($pengaturan->kuota - $countPendaftaran < 30) {
                 $status = 0; //Kuota Hampir Habis
-            } else if($days < 10 &&  !$toDate->isPast()){
+            } else if ($days < 10 && !$toDate->isPast()) {
                 $status = 4; //Hampir tutup
-            } else if($toDate->isPast()){
+            } else if ($toDate->isPast()) {
                 $status = 2;//Ditutup
-            }
-            else {
+            } else {
                 $status = 1; //Kuota Ada
             }
         } else {
@@ -120,7 +121,7 @@ class PendaftaranController extends Controller
         $idPendaftaran = sprintf('%s%02d%03d', $timestamp->format('Ym'), $bidang, $count);
 
         $mergedData['id_pendaftaran'] = $idPendaftaran;
-        Pendaftaran::create($mergedData);
+        $pendaftaran = Pendaftaran::create($mergedData);
         session()->forget(['dataDiri', 'dataComplete']);
 
         RiwayatPendaftaran::create([
@@ -129,11 +130,18 @@ class PendaftaranController extends Controller
             'catatan' => "Mohon tunggu untuk proses verifikasi.",
         ]);
 
+
         Mail::to($mergedData['email'])->send(new StatusPendaftaranMail($mergedData['name'], 'Menunggu Verifikasi'));
 
+        $adminUsers = User::whereHas('roles', function ($query) {
+            $query->where('id', 2); 
+        })->get();
+
+        foreach ($adminUsers as $adminUser) {
+            Mail::to($adminUser->email)->send(new AdminPendaftaranMail($pendaftaran));
+        }
 
         return redirect('/pendaftaran/cek-status')->with("success", "Pendaftaran berhasil disubmit!");
-
     }
 
     public function viewCekStatus()
@@ -153,7 +161,7 @@ class PendaftaranController extends Controller
         $lastRiwayatPendaftaran = $riwayatPendaftaran->first();
 
         $count = $riwayatPendaftaran->count();
-        $riwayatPendaftaran = $riwayatPendaftaran->slice($count-1);
+        $riwayatPendaftaran = $riwayatPendaftaran->slice($count - 1);
 
         return view('pendaftaran_cek_status', [
             'pengumuman' => $pengumuman,

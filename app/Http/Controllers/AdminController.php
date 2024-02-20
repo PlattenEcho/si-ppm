@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Pendaftaran;
 use App\Models\Pengaturan;
 use App\Models\Pengumuman;
+// use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+
 
 class AdminController extends Controller
 {
@@ -29,6 +32,22 @@ class AdminController extends Controller
     public function viewDaftarPeserta()
     {
         return view('admin.daftar_peserta');
+    }
+
+    public function viewCetakLaporan()
+    {
+        return view('admin.cetak_laporan');
+    }
+
+    public function viewPDF(){
+        $data = [
+            'title' => 'Contoh PDF dengan DomPDF',
+            'content' => 'Ini adalah konten PDF.'
+        ];
+    
+        $pdf = Pdf::loadView('admin.pdf.test', ['data' => $data]); 
+ 
+        return $pdf->download();    
     }
 
     public function viewPengaturan()
