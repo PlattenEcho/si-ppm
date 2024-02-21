@@ -14,7 +14,7 @@ class LoginController extends Controller
     {
         $credentials = request()->validate([
             "email" => "required|email:dns",
-            "password" => "required|min:8|max:255",
+            "password" => "required|min:8|max:30",
         ]);
 
         $email = $credentials['email'];
@@ -69,8 +69,8 @@ class LoginController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|unique:users',
-            'password' => 'required|min:8|max:255',
-            "confirmPassword" => 'required|min:8|max:255'
+            'password' => 'required|min:8|max:30',
+            "confirmPassword" => 'required|min:8|max:30'
         ]);
 
         $pool = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';

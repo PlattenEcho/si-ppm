@@ -36,18 +36,31 @@ class AdminController extends Controller
 
     public function viewCetakLaporan()
     {
-        return view('admin.cetak_laporan');
+        $bulanList = Pendaftaran::selectRaw('MONTH(created_at) as bulan')
+            ->distinct()
+            ->orderBy('bulan')
+            ->pluck('bulan');
+
+        $periodeList = Pendaftaran::select('periode')->distinct()->pluck('periode');
+
+        $tahunList = Pendaftaran::selectRaw('YEAR(created_at) as tahun')
+            ->distinct()
+            ->orderBy('tahun')
+            ->pluck('tahun');
+
+        return view('admin.cetak_laporan', compact('bulanList', 'periodeList', 'tahunList'));
     }
 
-    public function viewPDF(){
+    public function viewPDF()
+    {
         $data = [
             'title' => 'Contoh PDF dengan DomPDF',
             'content' => 'Ini adalah konten PDF.'
         ];
-    
-        $pdf = Pdf::loadView('admin.pdf.test', ['data' => $data]); 
- 
-        return $pdf->download();    
+
+        $pdf = Pdf::loadView('admin.pdf.test', ['data' => $data]);
+
+        return $pdf->download();
     }
 
     public function viewPengaturan()
@@ -92,7 +105,7 @@ class AdminController extends Controller
         $imageExtension = $request->file('image')->extension();
         $imageName = 'image_pengumuman.' . $imageExtension;
         $validatedData['image'] = $request->file('image')->storeAs('image_pengumuman', $imageName, 'public');
-        
+
         Pengumuman::first()->update($validatedData);
 
         return redirect('/admin/pengaturan')->with("success", "Pengumuman berhasil diubah");

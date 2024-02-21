@@ -25,7 +25,8 @@ class Pendaftaran extends Model
         'status_pendaftaran',
         'bidang',
         'scan_ktm',
-        'surat_pengantar'
+        'surat_pengantar',
+        'periode'
     ];
 
     // Jika Anda memiliki relasi dengan tabel users, tambahkan relasinya di sini
