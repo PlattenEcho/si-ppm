@@ -68,8 +68,8 @@ final class PendaftaranTable extends PowerGridComponent
             ->addColumn('rencana_kegiatan')
             ->addColumn('status_pendaftaran')
             ->addColumn('status_pendaftaran_label', fn($model) => Pendaftaran::statusCodes()->firstWhere('status_pendaftaran', $model->status_pendaftaran)['label'])
-            ->addColumn('bidang_label', fn($model) => Pendaftaran::codes()->firstWhere('bidang', $model->bidang)['label'])
             ->addColumn('bidang')
+            ->addColumn('bidang_label', fn($model) => Pendaftaran::codes()->firstWhere('bidang', $model->bidang)['label'])
             ->addColumn('scan_ktm')
             ->addColumn('surat_pengantar')
             ->addColumn('created_at_formatted', fn(Pendaftaran $model) => Carbon::parse($model->created_at)->format('d/m/Y'));
@@ -89,7 +89,7 @@ final class PendaftaranTable extends PowerGridComponent
             Column::add()
                 ->title('Bidang')
                 ->field('bidang_label', 'bidang'),
-            Column::add()
+          Column::add()
                 ->title('Status Pendaftaran')
                 ->field('status_pendaftaran_label', 'status_pendaftaran'),
             Column::make('Created at', 'created_at_formatted', 'created_at')

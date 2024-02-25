@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendVerificationCodeEmail;
-use Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {

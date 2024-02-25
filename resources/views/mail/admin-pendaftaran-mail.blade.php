@@ -13,7 +13,7 @@ Pendaftaran baru sudah diterima.
     | Universitas      |  {{ $pendaftaran->universitas }}     |
     | Email            |  {{ $pendaftaran->email }}           |
     | No.telp          |  {{ $pendaftaran->no_telp }}         |
-    | Bidang           |  {{ $pendaftaran->bidang }}          |
+    | Bidang           |{{ $pendaftaran->getCodeLabelAttribute('bidang') }}            |
 @endcomponent
 
 

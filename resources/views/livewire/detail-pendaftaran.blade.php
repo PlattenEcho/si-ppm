@@ -3,7 +3,14 @@
         <div class="basis-4/12 sticky px-2 py-2">
             <div class="mb-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-900 dark:text-white">Ubah Status</label>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
+                        <p class="font-semibold mb-2 text-lg text-gray-800 dark:text-gray-400">
+                            {{ $pendaftaran->id_pendaftaran }} 
+                        </p>
+                    </div>
+                    <hr class="mb-4">
+                    <label class="block mt-4 text-sm font-medium text-gray-900 dark:text-white">Ubah Status</label>
                     {{-- <select wire:model="selectedStatus"
                         class="block mb-4 font-normal py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                         <option value="" selected disabled>Edit Status Pendaftaran</option>

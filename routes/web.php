@@ -9,6 +9,7 @@ use App\Models\Pendaftaran;
 use App\Models\Pengaturan;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------

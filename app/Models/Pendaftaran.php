@@ -99,7 +99,7 @@ class Pendaftaran extends Model
         return $statusCodes[$this->attributes['status_pendaftaran']] ?? 'Unknown Status';
     }
 
-    public function getBidangAttribute()
+    public function getCodeLabelAttribute($attribute)
     {
         $bidangCodes = [
             1 => 'Komunikasi',
@@ -109,6 +109,7 @@ class Pendaftaran extends Model
             5 => 'Statistika',
         ];
 
-        return $bidangCodes[$this->attributes['bidang']] ?? 'Unknown Bidang';
+        return $bidangCodes[$this->attributes[$attribute]] ?? 'Unknown ' . ucfirst($attribute);
     }
+
 }
