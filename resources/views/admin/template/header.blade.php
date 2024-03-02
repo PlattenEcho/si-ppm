@@ -17,7 +17,7 @@
         <ul class="ml-auto flex items-center flex-shrink-0 space-x-6">
             <!-- Notifications menu -->
             <li class="relative">
-                <button class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-primary"
+                {{-- <button class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-primary"
                     @click="toggleNotificationsMenu" @keydown.escape="closeNotificationsMenu" aria-label="Notifications"
                     aria-haspopup="true">
                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -28,7 +28,7 @@
                     <!-- Notification badge -->
                     <span aria-hidden="true"
                         class="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"></span>
-                </button>
+                </button> --}}
                 <template x-if="isNotificationsMenuOpen">
                     <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
                         x-transition:leave-end="opacity-0" @click.away="closeNotificationsMenu"
@@ -70,7 +70,7 @@
                     type="button">
                     <span class="sr-only">Open user menu</span>
                     <img class="object-cover w-8 h-8 me-2 rounded-full"
-                        src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
                         alt="user photo">
                     {{ auth()->user()->name }}
                     <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -89,7 +89,7 @@
                     </div>
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
-                        <li>
+                        {{-- <li>
                             <a href="#"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
                         </li>
@@ -100,7 +100,7 @@
                         <li>
                             <a href="#"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <form action="/logout" method="POST">
                                 @csrf

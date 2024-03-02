@@ -7,7 +7,7 @@
                 <div class="max-w-5xl container px-6 pb-6 mx-auto">
                     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                         Pendaftaran
-                        {{ $status }}
+                        {{-- {{ $status }} --}}
                     </h2>
                     <div class="flex flex-row space-x-">
                         <div class="basis-1/4 pr-8">{{-- Stepper --}}
@@ -111,7 +111,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                                    <div class="mb-4">
                                         <div>
                                             <label for="jenjang"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -129,6 +129,8 @@
                                                     {{ $message }}</p>
                                             @enderror
                                         </div>
+                                    </div>
+                                    <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                         <div>
                                             <label for="universitas"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asal
@@ -137,6 +139,17 @@
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Universitas X" value="{{ old('universitas') }}" required="">
                                             @error('universitas')
+                                                <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                                    {{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div>
+                                            <label for="program_studi"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Program Studi <span class="text-red-500">*</span> </label>
+                                            <input type="text" name="program_studi" id="program_studi"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="IPA" value="{{ old('program_studi') }}" required="">
+                                            @error('program_studi')
                                                 <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
                                                     {{ $message }}</p>
                                             @enderror
@@ -153,6 +166,30 @@
                                             <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
                                                 {{ $message }}</p>
                                         @enderror
+                                    </div>
+                                    <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                                        <div>
+                                            <label for="tanggal_mulai"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Mulai Magang</label>
+                                            <input type="date" name="tanggal_mulai" id="tanggal_mulai"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                value="{{ old('tanggal_mulai') }}" required="">
+                                            @error('tanggal_mulai')
+                                                <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                                    {{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div>
+                                            <label for="tanggal_akhir"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Akhir Magang</label>
+                                            <input type="date" name="tanggal_akhir" id="tanggal_akhir"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                value="{{ old('tanggal_akhir') }}" required="">
+                                            @error('tanggal_akhir')
+                                                <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                                    {{ $message }}</p>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="mb-4">
                                         <label for="motivasi"

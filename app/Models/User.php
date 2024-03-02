@@ -55,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return "https://freesvg.org/img/abstract-user-flat-4.png";
     }
 
-    public function role()
+    public function roles()
     {
         return $this->belongsTo(Role::class, 'idrole');
     }

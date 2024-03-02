@@ -14,6 +14,7 @@ class Pengaturan extends Model
         'kuota',
         'tanggal_buka',
         'tanggal_tutup',
+        'periode'
     ];
 
 }

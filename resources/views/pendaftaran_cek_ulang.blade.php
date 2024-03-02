@@ -137,6 +137,45 @@
                                             class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                Program Studi
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                :
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $mergedData['program_studi'] }}
+                                            </td>
+                                        </tr>
+                                        <tr
+                                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                            <th scope="row"
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                Tanggal Mulai Magang
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                :
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $mergedData['tanggal_mulai'] }}
+                                            </td>
+                                        </tr>
+                                        <tr
+                                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                            <th scope="row"
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                Tanggal Akhir Magang
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                :
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $mergedData['tanggal_akhir'] }}
+                                            </td>
+                                        </tr>
+                                        <tr
+                                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                            <th scope="row"
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 Motivasi Magang
                                             </th>
                                             <td class="px-6 py-4">

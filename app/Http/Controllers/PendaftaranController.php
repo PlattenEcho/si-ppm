@@ -58,13 +58,16 @@ class PendaftaranController extends Controller
     public function storeDataDiri(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:50',
             'nim' => 'required|string|max:30',
-            'email' => 'required|email:dns|max:255',
+            'email' => 'required|email:dns|max:50',
             'no_telp' => 'required|numeric',
             'jenjang' => 'required|numeric',
-            'universitas' => 'required|string|max:255',
+            'universitas' => 'required|string|max:50',
+            'program_studi' => 'required|string|max:50',
             'alamat' => 'required|string|max:255',
+            'tanggal_mulai' => 'required|date',
+            'tanggal_akhir' => 'required|date',
             'motivasi' => 'required|string',
             'rencana_kegiatan' => 'required|string',
             'scan_ktm' => 'required|mimes:jpeg,png,pdf|max:4096',
@@ -155,14 +158,14 @@ class PendaftaranController extends Controller
         }
 
         $pendaftaran = $user->pendaftaran;
-        $riwayatPendaftaran = $pendaftaran->riwayatPendaftaran->sortByDesc('created_at');
+        $riwayatPendaftaran = $pendaftaran->riwayatPendaftaran;
 
         $diterima = $riwayatPendaftaran->where('status_pendaftaran', 'Diterima');
         $ditolak = $riwayatPendaftaran->where('status_pendaftaran', 'Ditolak');
-        $lastRiwayatPendaftaran = $riwayatPendaftaran->first();
+        $lastRiwayatPendaftaran = $riwayatPendaftaran->sortByDesc('created_at')->first();
 
         $count = $riwayatPendaftaran->count();
-        $riwayatPendaftaran = $riwayatPendaftaran->slice($count - 1);
+        $riwayatPendaftaran = $riwayatPendaftaran->slice(0, $count - 1);
 
         return view('pendaftaran_cek_status', [
             'pengumuman' => $pengumuman,

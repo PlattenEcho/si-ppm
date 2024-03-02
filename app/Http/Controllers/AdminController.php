@@ -184,6 +184,7 @@ class AdminController extends Controller
             'kuota' => 'required|numeric|max:300',
             'tanggal_buka' => 'required|date',
             'tanggal_tutup' => 'required|date',
+            'periode' => 'required|numeric'
         ]);
 
         $pengaturan = Pengaturan::first();

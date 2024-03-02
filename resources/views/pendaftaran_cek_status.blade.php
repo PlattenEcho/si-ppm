@@ -2,7 +2,7 @@
 
 @section('body')
     <section>
-        <div class=" overflow-y-auto flex h-auto dark:bg-gray-900">
+        <div class="overflow-y-auto flex min-h-[40rem] h-auto dark:bg-gray-900">
             <div class="container px-6 pb-6 mx-auto">
                 <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Pendaftaran
@@ -21,7 +21,7 @@
                                 class="p-4 mb-4 text-white border border-green-300 rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
                                 role="alert">
                                 <img class="mb-4 object-cover rounded-md w-full max-h-[16rem]"
-                                    src=" {{ ($pengumuman->image) }}" alt="">
+                                    src=" {{ asset('storage/' . $pengumuman->image) }}" alt="">
                                 <div class="flex items-center">
                                     <span class="sr-only">Info</span>
                                     <h3 class="text-xl font-bold">{{ $pengumuman->title }}</h3>
@@ -34,7 +34,7 @@
                                     Semarang
                                 </div>
                                 <div class="flex">
-                                    <a href="http://{{$pengumuman->link}}">
+                                    <a href="http://{{ $pengumuman->link }}">
                                         <button type="button"
                                             class="text-green-800 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                             <svg class="me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

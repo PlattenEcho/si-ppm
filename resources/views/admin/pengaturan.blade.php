@@ -14,6 +14,19 @@
                 </h4>
                 <form action="{{ route('admin.savePengaturan') }}" method="POST">
                     @csrf
+                    <div class="mb-4">
+                        <label for="periode" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Periode</label>
+                        <select id="periode" name="periode"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="{{ optional($pengaturan)->periode}}">{{ optional($pengaturan)->periode}}</option>
+                            <option value="{{ optional($pengaturan)->periode + 1 }}">{{ optional($pengaturan)->periode + 1}}</option>
+                        </select>
+                        @error('periode')
+                        <p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                    </div>
                     <div class="grid gap-4 mb-4 sm:grid-cols-2">
                         <div>
                             <label for="buka"
@@ -91,8 +104,8 @@
                 <div id="alert-additional-content-3"
                     class="p-4 mb-4 text-white border max-w-5xl border-green-300 rounded-lg bg-green-500 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
                     role="alert">
-                    <img class="mb-4 object-cover rounded-md w-full max-h-[16rem]" src="{{ asset('storage/' . $pengumuman->image) }}"
-                        alt="fghfghfgh">
+                    <img class="mb-4 object-cover rounded-md w-full max-h-[16rem]"
+                        src="{{ asset('storage/' . $pengumuman->image) }}" alt="fghfghfgh">
                     <div class="flex items-center">
                         <span class="sr-only">Info</span>
                         <h3 class="text-xl font-bold">{{ $pengumuman->title }}</h3>

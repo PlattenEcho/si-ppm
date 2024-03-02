@@ -16,6 +16,9 @@ class StatusPendaftaran extends Model
     protected $fillable = [
         'nama_status',
     ];
-
+    public function pendaftaran()
+    {
+        return $this->belongsTo(Pendaftaran::class, 'status_pendaftaran');
+    }
     // Tidak ada relasi dengan tabel lain dalam contoh ini
 }

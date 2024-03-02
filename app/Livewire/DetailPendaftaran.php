@@ -7,6 +7,7 @@ use App\Mail\StatusPendaftaranMail;
 use App\Mail\WelcomeMail;
 use App\Models\Pendaftaran;
 use App\Models\RiwayatPendaftaran;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
@@ -59,8 +60,10 @@ class DetailPendaftaran extends ModalComponent
             'id_pendaftaran' => $pendaftaran->id_pendaftaran,
             'status_pendaftaran' => $this->selectedStatus,
             'catatan' => $this->catatan,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+    
         ]);
-
         return redirect()->to('/admin/daftar-peserta')->with('success', 'Status berhasil diupdate!');
 
 
