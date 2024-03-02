@@ -27,32 +27,50 @@ class AdminController extends Controller
             $month = Carbon::parse($pendaftaran->created_at)->format('F'); // Get month name
             $monthlyData[$month][] = $pendaftaran;
         }
-    
+
         $sortedMonths = array_keys($monthlyData);
         usort($sortedMonths, function ($a, $b) {
             return \DateTime::createFromFormat('F', $a) > \DateTime::createFromFormat('F', $b);
         });
-    
+
         $sortedMonthlyData = [];
         foreach ($sortedMonths as $month) {
             $sortedMonthlyData[$month] = $monthlyData[$month];
         }
-    
-    
+
+        $tutup = $pengaturan->tanggal_tutup;
+        $toDate = Carbon::parse($pengaturan->tanggal_tutup);
+        $fromDate = Carbon::now();
+        $days = $toDate->diffInDays($fromDate);
+
+        if ($pengaturan->buka_tidak == 1) {
+            $countPendaftaran = Pendaftaran::whereBetween('created_at', [$pengaturan->tanggal_buka, $pengaturan->tanggal_tutup])->where('periode', $pengaturan->periode)->count();
+            if ($countPendaftaran >= $pengaturan->kuota) {
+                $status = 2; //Kuota Habis
+            } else if ($pengaturan->kuota - $countPendaftaran < 30) {
+                $status = 0;
+            } else if ($days < 10 && !$toDate->isPast()) {
+                $status = 4;
+            } else if ($toDate->isPast()) {
+                $status = 2;//Ditutup
+            } else {
+                $status = 1; //Kuota Ada
+            }
+        } else {
+            $status = 2; //Pendaftaran Ditutup
+        }
+
         $belumVerifikasi = Pendaftaran::where('status_pendaftaran', 1)->where('periode', $periode)->count();
         $sudahVerifikasi = Pendaftaran::where('status_pendaftaran', 2)->where('periode', $periode)->count();
         $seleksi = Pendaftaran::where('status_pendaftaran', 4)->where('periode', $periode)->count();
         $diterima = Pendaftaran::where('status_pendaftaran', 5)->where('periode', $periode)->count();
         $ditolak = Pendaftaran::where('status_pendaftaran', 6)->where('periode', $periode)->count();
-
-        $seleksi = Pendaftaran::where('status_pendaftaran', 4)->count();
-
         $data = [
             'labels' => ['Diverifikasi', 'Belum Verifikasi', 'Seleksi', 'Diterima', 'Ditolak'],
             'data' => [$sudahVerifikasi, $belumVerifikasi, $seleksi, $diterima, $ditolak],
         ];
 
-        return view('admin.dashboard', compact('data', 'periode', 'pengaturan', 'belumVerifikasi', 'sudahVerifikasi', 'seleksi', 'diterima', 'ditolak', 'sortedMonthlyData'));
+        return view('admin.dashboard', compact('status', 'data', 'periode', 'pengaturan', 'belumVerifikasi', 'sudahVerifikasi', 'seleksi', 'diterima', 'ditolak', 'sortedMonthlyData'));
     }
 
     public function viewDaftarPeserta()
@@ -102,7 +120,7 @@ class AdminController extends Controller
         return view('admin.cetak_laporan', compact('bulanList', 'periodeList', 'tahunList', 'pendaftarDiterima', 'pendaftarDitolak', 'totalPendaftar'));
     }
 
-    
+
     public function generate(Request $request)
     {
         $tipe = $request->input('tipe');

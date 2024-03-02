@@ -1,10 +1,12 @@
+@php
+    use App\Models\Pengaturan;
+@endphp
 <header>
     <nav class="shadow-md bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a class="mx-6 text-xl font-bold text-gray-800 dark:text-gray-200 flex items-center" href="/">
                 <img class="w-auto h-8 mr-2"
-                    src="https://www.its.ac.id/wp-content/uploads/2021/10/logo-kominfo-transparent.png"
-                    alt="SIPPM Logo">
+                    src="https://www.its.ac.id/wp-content/uploads/2021/10/logo-kominfo-transparent.png" alt="SIPPM Logo">
                 SIPPM
             </a>
             <div class="flex items-center lg:order-2">
@@ -84,7 +86,8 @@
                             class="flex items-center py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700" @endif>
                             Pendaftaran
                             @if (Auth::check() &&
-                                    Auth::user()->pendaftaran()->exists())
+                                    Auth::user()->pendaftaran()->exists() &&
+                                    Auth::user()->pendaftaran->periode == Pengaturan::first()->periode)
                                 <svg class="w-4 h-4 text-red-500 dark:text-white ml-1" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path

@@ -12,7 +12,7 @@
                 <!-- Card -->
                 <div class="flex items-center shadow-md p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                     <div
-                        class="p-3 mr-4   {{ optional($pengaturan)->buka_tidak == '1' ? 'text-green-500 bg-green-100' : 'text-red-600 bg-red-100' }}
+                        class="p-3 mr-4   {{ optional($status) == '2' ?  'text-red-600 bg-red-100' : 'text-green-500 bg-green-100' }}
                      rounded-full dark:text-orange-100 dark:bg-orange-500">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path
@@ -27,7 +27,7 @@
                             @if (!$pengaturan)
                                 -
                             @else
-                                {{ optional($pengaturan)->buka_tidak == '1' ? 'Buka' : 'Tutup' }} - Per. {{ $periode }}
+                                {{ optional($status) == '2' ? 'Tutup' : 'Buka' }} - Per. {{ $periode }}
                             @endif
                         </p>
                     </div>

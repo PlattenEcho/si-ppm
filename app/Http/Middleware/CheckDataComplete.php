@@ -16,7 +16,7 @@ class CheckDataComplete
     public function handle(Request $request, Closure $next): Response
     {
         if (!session()->has('dataComplete')) {
-            return redirect('/pendaftaran/pilih-divisi')->with('error', 'Tidak bisa diakses!');
+            return redirect('/pendaftaran/pilih-bidang')->with('error', 'Tidak bisa diakses!');
         }
 
 

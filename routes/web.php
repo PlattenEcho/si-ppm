@@ -30,7 +30,7 @@ Route::get('/', function () {
     $days = $toDate->diffInDays($fromDate);
 
     if ($pengaturan->buka_tidak == 1) {
-        $countPendaftaran = Pendaftaran::whereBetween('created_at', [$pengaturan->tanggal_buka, $pengaturan->tanggal_tutup])->count();
+        $countPendaftaran = Pendaftaran::whereBetween('created_at', [$pengaturan->tanggal_buka, $pengaturan->tanggal_tutup])->where('periode', $pengaturan->periode)->count();
         if ($countPendaftaran >= $pengaturan->kuota) {
             $status = 2; //Kuota Habis
         }else if($pengaturan->kuota - $countPendaftaran < 30){

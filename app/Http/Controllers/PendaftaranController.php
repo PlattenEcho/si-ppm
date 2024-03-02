@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\AdminPendaftaranMail;
 use App\Mail\StatusPendaftaranMail;
 use App\Models\Pendaftaran;
+use App\Models\Pengaturan;
 use App\Models\Pengumuman;
 use App\Models\RiwayatPendaftaran;
 use App\Models\User;
@@ -21,7 +22,7 @@ class PendaftaranController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->pendaftaran()->exists()) {
+            if ($user->pendaftaran()->exists() && $user->pendaftaran->periode == Pengaturan::first()->periode) {
                 return redirect('/pendaftaran/cek-status');
             }
         }
@@ -33,7 +34,7 @@ class PendaftaranController extends Controller
         $days = $toDate->diffInDays($fromDate);
 
         if ($pengaturan->buka_tidak == 1) {
-            $countPendaftaran = Pendaftaran::whereBetween('created_at', [$pengaturan->tanggal_buka, $pengaturan->tanggal_tutup])->count();
+            $countPendaftaran = Pendaftaran::whereBetween('created_at', [$pengaturan->tanggal_buka, $pengaturan->tanggal_tutup])->where('periode', $pengaturan->periode)->count();
             if ($countPendaftaran >= $pengaturan->kuota) {
                 $status = 2; //Kuota Habis
             } else if ($pengaturan->kuota - $countPendaftaran < 30) {
