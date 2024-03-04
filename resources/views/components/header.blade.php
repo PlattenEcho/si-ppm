@@ -1,8 +1,8 @@
 @php
     use App\Models\Pengaturan;
 @endphp
-<header>
-    <nav class="shadow-md bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+<header class="absolute inset-x-0 top-0 z-50">
+    <nav class="shadow-md lg:min-h-[4rem]  bg-white bg-opacity-25 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a class="mx-6 text-xl font-bold text-gray-800 dark:text-gray-200 flex items-center" href="/">
                 <img class="w-auto h-8 mr-2"

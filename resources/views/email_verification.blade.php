@@ -59,7 +59,7 @@
                 <form action="/logout" method="POST">
                     @csrf
                     <button type="submit"
-                        class="w-full text-center block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        class="w-full text-center block px-4 py-2 text-sm text-gray-700 underline hover:no-underline hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                         Log Out
                     </button>
                 </form>

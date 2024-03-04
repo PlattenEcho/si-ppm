@@ -42,7 +42,6 @@ class SuratPenerimaan extends ModalComponent
     public function render()
     {
         $suratPenerimaan = \App\Models\SuratPenerimaan::where('id_pendaftaran', $this->pendaftaranId)->first();
-
         return view('livewire.surat-penerimaan', ['suratPenerimaan' => $suratPenerimaan]);
     }
 
@@ -79,9 +78,7 @@ class SuratPenerimaan extends ModalComponent
         $pdfFilePath = 'storage/surat_penerimaan/' . $this->pendaftaran->name . '_Surat Penerimaan Diskominfo.pdf';
         $command = '"C:\Program Files\LibreOffice\program\soffice.exe" --headless --convert-to pdf "' . $docxFilePath . '" --outdir "' . public_path('storage/surat_penerimaan') . '"';
         shell_exec($command);
-        // Delete the DOCX file
         unlink($docxFilePath);
-
 
         \App\Models\SuratPenerimaan::create([
             'id_pendaftaran' => $this->pendaftaranId,
