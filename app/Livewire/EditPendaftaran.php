@@ -4,10 +4,13 @@ namespace App\Livewire;
 
 use App\Models\Pendaftaran;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 
 class EditPendaftaran extends ModalComponent
-{
+{   
+    use WithFileUploads;
+
     public $pendaftaran;
     public $pendaftaranId;
     public $name;
@@ -47,13 +50,20 @@ class EditPendaftaran extends ModalComponent
 
     public function render()
     {   
-        $bidang = [
+        $keys = [
             1 => 'SMK',
             2 => 'S1',
             3 => 'Lainnya',
         ];
         $jenjangUser = $this->jenjang;
-        return view('livewire.edit-pendaftaran', compact('bidang', 'jenjangUser'));
+        if ($jenjangUser == 'SMK'){
+            $bidang = 1;
+        }else if($jenjangUser == 'S1'){
+            $bidang = 2;
+        }else{
+            $bidang = 3;
+        }
+        return view('livewire.edit-pendaftaran', compact('keys', 'bidang', 'jenjangUser'));
     }
 
     public function editPendaftaran()
@@ -104,9 +114,6 @@ class EditPendaftaran extends ModalComponent
         $this->pendaftaran->update($updateData);
 
 
-        $this->emit('pendaftaranUpdated');
-
-        $this->closeModal();
-
+        return redirect()->to('/admin/daftar-peserta')->with('success', $this->pendaftaran->name . ' berhasil diedit!');
     }
 }

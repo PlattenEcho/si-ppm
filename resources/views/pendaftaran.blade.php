@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('body')
-    <section>
+    <section class="mt-16">
         <div class=" overflow-y-auto flex h-auto dark:bg-gray-900">
             @auth
                 <div class="max-w-5xl container px-6 pb-6 mx-auto">

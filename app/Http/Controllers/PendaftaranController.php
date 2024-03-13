@@ -8,6 +8,7 @@ use App\Models\Pendaftaran;
 use App\Models\Pengaturan;
 use App\Models\Pengumuman;
 use App\Models\RiwayatPendaftaran;
+use App\Models\SuratPenerimaan;
 use App\Models\User;
 use DB;
 
@@ -94,18 +95,17 @@ class PendaftaranController extends Controller
         $validatedData = $request->validate([
             'bidang' => 'required|in:1,2,3,4,5',
         ]);
-
+    
         $dataDiri = session()->get('dataDiri');
         $mergedData = array_merge($dataDiri, $validatedData);
         session()->put('dataComplete', $mergedData);
-
+    
         return redirect('/pendaftaran/cek-ulang')->with('mergedData', $mergedData);
     }
 
     public function viewCekUlang()
     {
         $mergedData = session()->get('dataComplete');
-
         return view('pendaftaran_cek_ulang', ['mergedData' => $mergedData]);
     }
 
@@ -126,6 +126,7 @@ class PendaftaranController extends Controller
         $idPendaftaran = sprintf('%s%02d%03d', $timestamp->format('Ym'), $bidang, $count);
 
         $mergedData['id_pendaftaran'] = $idPendaftaran;
+        $mergedData['periode'] = Pengaturan::first()->periode;
         $pendaftaran = Pendaftaran::create($mergedData);
         session()->forget(['dataDiri', 'dataComplete']);
 
@@ -138,9 +139,7 @@ class PendaftaranController extends Controller
 
         Mail::to($mergedData['email'])->send(new StatusPendaftaranMail($mergedData['name'], 'Menunggu Verifikasi'));
 
-        $adminUsers = User::whereHas('roles', function ($query) {
-            $query->where('id', 2); 
-        })->get();
+        $adminUsers = User::where('idrole', 2)->get();
 
         foreach ($adminUsers as $adminUser) {
             Mail::to($adminUser->email)->send(new AdminPendaftaranMail($pendaftaran));
@@ -160,7 +159,7 @@ class PendaftaranController extends Controller
 
         $pendaftaran = $user->pendaftaran;
         $riwayatPendaftaran = $pendaftaran->riwayatPendaftaran;
-
+        
         $diterima = $riwayatPendaftaran->where('status_pendaftaran', 'Diterima');
         $ditolak = $riwayatPendaftaran->where('status_pendaftaran', 'Ditolak');
         $lastRiwayatPendaftaran = $riwayatPendaftaran->sortByDesc('created_at')->first();
@@ -168,12 +167,15 @@ class PendaftaranController extends Controller
         $count = $riwayatPendaftaran->count();
         $riwayatPendaftaran = $riwayatPendaftaran->slice(0, $count - 1);
 
+        $suratPenerimaan = SuratPenerimaan::where('id_pendaftaran', $pendaftaran->id_pendaftaran);
+
         return view('pendaftaran_cek_status', [
             'pengumuman' => $pengumuman,
             'riwayatPendaftaran' => $riwayatPendaftaran,
             'lastRiwayatPendaftaran' => $lastRiwayatPendaftaran,
             'diterima' => $diterima,
             'ditolak' => $ditolak,
+            'suratPenerimaan' => $suratPenerimaan
         ]);
     }
 

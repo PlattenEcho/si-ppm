@@ -1,9 +1,9 @@
 @extends('main')
 
 @section('body')
-    <section>
-        <div class="overflow-y-auto flex min-h-[40rem] h-auto dark:bg-gray-900">
-            <div class="container px-6 pb-6 mx-auto">
+    <section class="mt-16">
+        <div class=" overflow-y-auto flex h-auto dark:bg-gray-900">
+            <div class="max-w-5xl min-w-[64rem] min-h-[36rem] container px-6 pb-6 mx-auto">
                 <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Pendaftaran
                 </h2>
@@ -46,6 +46,14 @@
                                             WhatsApp
                                         </button>
                                     </a>
+                                    @if($suratPenerimaan->exists())
+                                    <a href="{{ $suratPenerimaan->exists() ? asset('storage/'.$suratPenerimaan->first()->file) : '#' }}" target="_blank">
+                                        <button type="button"
+                                            class="text-green-800 bg-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                            Download Surat Penerimaan
+                                        </button>
+                                    </a>
+                                    @endif
                                     {{--                              
                                 <a href="">
                                     <button type="button"

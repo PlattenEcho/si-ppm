@@ -12,7 +12,7 @@
             {{-- Content --}}
             <div class="mx-auto max-w-2xl pb-16 sm:pb-32 lg:pb-40 pt-14 sm:pt-30 lg:pt-48">
 
-                <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+                <div class="hidden sm:flex sm:justify-center">
                     @if ($status == 0)
                         <p class="bg-red-600 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
                             Kuota Pendaftaran Hampir Habis!
@@ -36,12 +36,12 @@
                             Tutup: {{ date('d/m/Y - H:i ', strtotime($tutup)) }}
                         </p>
                     @endif
-                    <div
+                    {{-- <div
                         class="relative rounded-full font-medium px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                         Daftar Magang Sekarang!!. <a href="#" class="font-semibold text-blue-600"><span
                                 class="absolute inset-0" aria-hidden="true"></span>Read more <span
                                 aria-hidden="true">&rarr;</span></a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="text-center">
                     <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-6xl">Jelajahi Dunia Profesionalisme
@@ -96,15 +96,16 @@
         </div>
     </section>
     <section id="skill">
-        <div class="bg-white py-24 sm:py-32">
+        <div class="bg-white py-16 sm:py-20">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-2xl lg:text-center">
-                    <h2 class="text-base font-semibold leading-7 text-blue-600">Deploy faster</h2>
-                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Everything you need to
-                        deploy your app</p>
-                    <p class="mt-6 text-lg leading-8 text-gray-600">Quis tellus eget adipiscing convallis sit sit eget
-                        aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at. In mi viverra
-                        elit nunc.</p>
+                    <h2 class="text-base font-semibold leading-7 text-blue-600">Manfaat Magang</h2>
+                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Bangun Karirmu Melalui
+                        Magang!</p>
+                    <p class="mt-6 text-lg leading-8 text-gray-600">Magang adalah kunci yang tepat untuk membuka
+                        peluang-peluang baru! Bersiaplah untuk mengeksplorasi dunia pekerjaan melalui pengalaman praktis
+                        yang tak tertandingi
+                        .</p>
                 </div>
                 <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
                     <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
@@ -112,171 +113,224 @@
                             <dt class="text-base font-semibold leading-7 text-gray-900">
                                 <div
                                     class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-                                    <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                        stroke="currentColor" aria-hidden="true">
+                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                                            d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
                                     </svg>
+
                                 </div>
-                                Push to deploy
+                                Pengalaman Kerja
                             </dt>
-                            <dd class="mt-2 text-base leading-7 text-gray-600">Morbi viverra dui mi arcu sed. Tellus semper
-                                adipiscing suspendisse semper morbi. Odio urna massa nunc massa.</dd>
+                            <dd class="mt-2 text-base leading-7 text-gray-600">Dengan melakukan magang, kalian bisa
+                                mempraktekan cara-cara atau pelajaran yang pernah kalian dapatkan saat perkuliahan.
+                            </dd>
                         </div>
                         <div class="relative pl-16">
                             <dt class="text-base font-semibold leading-7 text-gray-900">
                                 <div
                                     class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-                                    <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                        stroke="currentColor" aria-hidden="true">
+                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                                            d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
                                     </svg>
                                 </div>
-                                SSL certificates
+                                Meningkatkan Keterampilan
                             </dt>
-                            <dd class="mt-2 text-base leading-7 text-gray-600">Sit quis amet rutrum tellus ullamcorper
-                                ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.</dd>
+                            <dd class="mt-2 text-base leading-7 text-gray-600">Kalian bisa mendapatkan
+                                pengetahuan-pengetahuan terkait bidang studi yang digeluti atau pengetahuan baru di dunia
+                                kerja.</dd>
                         </div>
                         <div class="relative pl-16">
                             <dt class="text-base font-semibold leading-7 text-gray-900">
                                 <div
                                     class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-                                    <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                        stroke="currentColor" aria-hidden="true">
+                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                            d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" />
                                     </svg>
                                 </div>
-                                Simple queues
+                                Membangun Relasi (Networking)
                             </dt>
-                            <dd class="mt-2 text-base leading-7 text-gray-600">Quisque est vel vulputate cursus. Risus proin
-                                diam nunc commodo. Lobortis auctor congue commodo diam neque.</dd>
+                            <dd class="mt-2 text-base leading-7 text-gray-600">Kalian bisa mengenal orang-orang yang memang
+                                ahli di bidangnya dan menjadikan itu sebagai modal relasi.</dd>
                         </div>
                         <div class="relative pl-16">
                             <dt class="text-base font-semibold leading-7 text-gray-900">
                                 <div
                                     class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-                                    <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33" />
+                                            d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                                     </svg>
+
                                 </div>
-                                Advanced security
+                                Melatih Kepercayaan Diri
                             </dt>
-                            <dd class="mt-2 text-base leading-7 text-gray-600">Arcu egestas dolor vel iaculis in ipsum
-                                mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.</dd>
+                            <dd class="mt-2 text-base leading-7 text-gray-600">Dengan melakukan magang, kalian secara tidak
+                                langsung melatih kepercayaan diri yang kalian miliki.</dd>
                         </div>
                     </dl>
                 </div>
             </div>
         </div>
     </section>
-    <section id="divisi">
-        <div class="grid grid-cols-2 gap-3 mb-4">
-            <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                </p>
+    <section class="text-gray-600 ">
+        <div class="container px-56 py-20 mx-auto">
+            <div class="mx-auto max-w-2xl lg:text-center">
+                <h2 class="text-base font-semibold leading-7 text-blue-600">Bidang Magang</h2>
+                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Pilih Bidang Magang yang
+                    Sesuai!</p>
+                <p class="mt-6 text-lg leading-8 text-gray-600">Magang adalah kunci yang tepat untuk membuka
+                    peluang-peluang baru! Bersiaplah untuk mengeksplorasi dunia pekerjaan melalui pengalaman praktis
+                    yang tak tertandingi
+                    .</p>
             </div>
-            <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                </p>
-            </div>
-            <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                </p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3 mb-4">
-            <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                </p>
-            </div>
-            <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
-                    <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 18 18">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                    </svg>
-                </p>
+            <div class="mt-8 flex flex-wrap -m-4">
+                <div class="xl:w-1/3 md:w-1/2 p-4">
+                    <div class="border border-gray-200 p-6 rounded-lg">
+                        <div
+                            class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-4">
+                            <svg fill="none" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" fill="currentColor"
+                                    d="M4 3a1 1 0 0 0-1 1v8c0 .6.4 1 1 1h1v2a1 1 0 0 0 1.7.7L9.4 13H15c.6 0 1-.4 1-1V4c0-.6-.4-1-1-1H4Z"
+                                    clip-rule="evenodd" />
+                                <path fill-rule="evenodd" fill="currentColor"
+                                    d="M8 17.2h.1l2.1-2.2H15a3 3 0 0 0 3-3V8h2c.6 0 1 .4 1 1v8c0 .6-.4 1-1 1h-1v2a1 1 0 0 1-1.7.7L14.6 18H9a1 1 0 0 1-1-.8Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Bidang Komunikasi</h2>
+                        <p class="leading-relaxed text-base">Hubungan masyarakat dan aspirasi publik.</p>
+                    </div>
+                </div>
+                <div class="xl:w-1/3 md:w-1/2 p-4">
+                    <div class="border border-gray-200 p-6 rounded-lg">
+                        <div
+                            class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-4">
+                            <svg fill="none" class="w-6 h-6" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" fill="currentColor"
+                                    d="M3 4a1 1 0 0 0-1 1v14c0 .6.4 1 1 1h18c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1H3Zm4.3 5.7a1 1 0 0 1 1.4-1.4l3 3c.4.4.4 1 0 1.4l-3 3a1 1 0 0 1-1.4-1.4L9.6 12 7.3 9.7ZM13 14a1 1 0 1 0 0 2h3a1 1 0 1 0 0-2h-3Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Bidang Informatika</h2>
+                        <p class="leading-relaxed text-base">Pembuatan website atau aplikasi mobile.</p>
+                    </div>
+                </div>
+                <div class="xl:w-1/3 md:w-1/2 p-4">
+                    <div class="border border-gray-200 p-6 rounded-lg">
+                        <div
+                            class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-4">
+                            <svg fill="none" class="w-6 h-6" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" fill="currentColor"
+                                    d="M14 7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V7Zm2 9.4 4.7 1.5A1 1 0 0 0 22 17V7a1 1 0 0 0-1.3-1L16 7.7v8.8Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Bidang Media</h2>
+                        <p class="leading-relaxed text-base">Pengelolaan media sosial dan pembuatan konten.</p>
+                    </div>
+                </div>
+                <div class="xl:w-1/3 md:w-1/2 p-4">
+                    <div class="border border-gray-200 p-6 rounded-lg">
+                        <div
+                            class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-4">
+                            <svg fill="none" class="w-6 h-6" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" fill="currentColor"
+                                    d="M8 3c0-.6.4-1 1-1h6c.6 0 1 .4 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-3 8c0-.6.4-1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2 1 1 0 1 0 0-2Zm2 5c0-.6.4-1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2 1 1 0 1 0 0-2Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Bidang Infrastruktur</h2>
+                        <p class="leading-relaxed text-base">Mengelola infrastruktur internet dan intranet.</p>
+                    </div>
+                </div>
+                <div class="xl:w-1/3 md:w-1/2 p-4">
+                    <div class="border border-gray-200 p-6 rounded-lg">
+                        <div
+                            class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-4">
+                            <svg fill="none" class="w-6 h-6" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M4 4.5V19c0 .6.4 1 1 1h15M7 14l4-4 4 4 5-5m0 0h-3.2M20 9v3.2" />
+                            </svg>
+                        </div>
+                        <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Bidang Statistik</h2>
+                        <p class="leading-relaxed text-base">Analisis terhadap data-data statistik.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <section
-        class="bg-center bg-cover bg-no-repeat bg-[url('https://i.ytimg.com/vi/HQRrZXaqhVE/maxresdefault.jpg')] bg-gray-700 bg-blend-multiply">
-        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-48">
-            <div class="justify-center flex items-center">
-                @if ($status == 0)
-                    <p class="bg-red-600 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
-                        Kuota Pendaftaran Hampir Habis!
-                    </p>
-                @elseif($status == 1)
-                    <p class="bg-green-500 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
-                        Pendaftaran Dibuka!
-                        <br>
-                        Tutup: {{ date('d/m/Y - H:i ', strtotime($tutup)) }}
-                    </p>
-                @elseif($status == 4)
-                    <p class="bg-red-600 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
-                        Pendaftaran Hampir Tutup!
-                        <br>
-                        Tutup: {{ date('d/m/Y - H:i ', strtotime($tutup)) }}
-                    </p>
-                @else
-                    <p class="bg-red-600 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
-                        Pendaftaran Ditutup!
-                        <br>
-                        Tutup: {{ date('d/m/Y - H:i ', strtotime($tutup)) }}
-                    </p>
-                @endif
+    <section id="panduan" class="bg-white text-gray-600 body-font">
+        <div class="px-40 py-20">
+            <div class="mb-8 mx-auto max-w-2xl lg:text-center">
+                <h2 class="text-base font-semibold leading-7 text-blue-600">Panduan</h2>
+                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Tertarik Magang? Ini Stepnya!
+                </p>
+                <p class="mt-6 text-lg leading-8 text-gray-600">Simple kok!</p>
             </div>
-            @auth
-                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Welcome
-                    Back {{ auth()->user()->name }}</h1>
-            @else
-                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">We
-                    invest in the world’s potential </h1>
-            @endauth
-            <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Here at Flowbite we focus on
-                markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
-            <div class="flex flex-col space-x-4 sm:flex-row sm:justify-center sm:space-y-0">
-                <a href="/login"
-                    class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400">
-                    Log In
-                </a>
-                <a href="/register"
-                    class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-                    Register
-                    <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg>
-                </a>
+            <div class="container pb-24 mx-auto flex flex-wrap">
+                <div class="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
+                    <img alt="feature" class="object-cover object-center h-full w-full"
+                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                </div>
+                <div class="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
+                    <div class="flex flex-col mb-10 lg:items-start items-center">
+                        <div
+                            class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-5">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Pendaftaran</h2>
+                            <p class="leading-relaxed text-base">Lakukan pendaftaran sebagai langkah pertama.</p>
+                            <a href="/pendaftaran"class="mt-3 text-blue-500 inline-flex items-center">Mulai Daftar
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col mb-10 lg:items-start items-center">
+                        <div
+                            class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-5">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+                                <circle cx="6" cy="6" r="3"></circle>
+                                <circle cx="6" cy="18" r="3"></circle>
+                                <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Seleksi</h2>
+                            <p class="leading-relaxed text-base">Cek status pendaftaran dan tunggu email dari kami.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col mb-10 lg:items-start items-center">
+                        <div
+                            class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-5">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+                                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Mulai Magang</h2>
+                            <p class="leading-relaxed text-base">Selamat datang di dunia kerja! Kami antusias untuk
+                                berkolaborasi dengan anda.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <hr>
         </div>
     </section>
 @endsection

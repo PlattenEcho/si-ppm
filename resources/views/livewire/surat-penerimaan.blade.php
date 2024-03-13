@@ -24,7 +24,7 @@
     <div class="flex items-center mb-6">
         <button type="button"
             class="px-2 py-2 text-white bg-gray-600 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm me-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 flex-shrink-0"
-            wire:click="$dispatch('openModal', { component: 'detail-pendaftaran', arguments: { pendaftaranId: {{ $pendaftaran->id_pendaftaran }} }})">
+            wire:click="$dispatch('closeModal')">
             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 14 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -350,3 +350,9 @@
         </div>
     @endif
 </div>
+
+<script>
+    window.addEventListener('closeModal', event => {
+        $(".modal").modal('hide');
+    })
+</script>

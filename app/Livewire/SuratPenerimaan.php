@@ -40,8 +40,12 @@ class SuratPenerimaan extends ModalComponent
     }
 
     public function render()
-    {
+    {   
         $suratPenerimaan = \App\Models\SuratPenerimaan::where('id_pendaftaran', $this->pendaftaranId)->first();
+        if($suratPenerimaan){
+            $date = Carbon::parse($suratPenerimaan->tanggal_surat_magang)->format('Y-m-d');
+            $this->tanggal_surat_magang = $date;
+        }
         return view('livewire.surat-penerimaan', ['suratPenerimaan' => $suratPenerimaan]);
     }
 
@@ -91,8 +95,7 @@ class SuratPenerimaan extends ModalComponent
         ]);
 
 
-        $this->dispatch('surat-penerimaan', pendaftaranId: $this->pendaftaranId);
-        $this->loading = false;
+        return redirect()->to('/admin/daftar-peserta')->with('success', $this->pendaftaran->name . ' - surat penerimaan dibuat!');
 
     }
 
@@ -142,7 +145,7 @@ class SuratPenerimaan extends ModalComponent
             'file' => "surat_penerimaan/" . $this->pendaftaran->name . '_Surat Penerimaan Diskominfo.pdf',
         ]);
 
-        $this->emit('refresh-me');
+        return redirect()->to('/admin/daftar-peserta')->with('success', $this->pendaftaran->name . ' - surat penerimaan berhasil diedit!');
     }
 
     public function download()

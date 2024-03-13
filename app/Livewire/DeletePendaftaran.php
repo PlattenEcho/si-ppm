@@ -24,11 +24,11 @@ class DeletePendaftaran extends ModalComponent
 
     public function delete()
     {
-        // RiwayatPendaftaran::where('id_pendaftaran', $this->pendaftaranId)->delete();
-        // SuratPenerimaan::where('id_pendaftaran', $this->pendaftaranId)->delete();
-        // Pendaftaran::where('id_pendaftaran', $this->pendaftaranId)->delete();
+        RiwayatPendaftaran::where('id_pendaftaran', $this->pendaftaranId)->delete();
+        SuratPenerimaan::where('id_pendaftaran', $this->pendaftaranId)->delete();
+        Pendaftaran::where('id_pendaftaran', $this->pendaftaranId)->delete();
 
-        return redirect()->to('/admin/daftar-peserta');
+        return redirect()->to('/admin/daftar-peserta')->with('success', $this->pendaftaran->name . ' berhasil dihapus!');
     }
 
     public function cancel()
