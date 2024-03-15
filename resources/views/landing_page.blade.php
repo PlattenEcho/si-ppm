@@ -14,17 +14,18 @@
 
                 <div class="hidden sm:flex sm:justify-center">
                     @if ($status == 0)
-                        <p class="bg-red-600 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
+                        <p class="bg-orange-500 text-white font-medium rounded-lg text-base px-5 py-2 mx-auto mb-4 text-center">
                             Kuota Pendaftaran Hampir Habis!
                         </p>
                     @elseif($status == 1)
-                        <p class="bg-green-500 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
+                        <p
+                            class="bg-green-500 text-white font-medium rounded-lg text-base px-5 py-2 mx-auto mb-4 text-center">
                             Pendaftaran Dibuka!
                             <br>
                             Tutup: {{ date('d/m/Y - H:i ', strtotime($tutup)) }}
                         </p>
                     @elseif($status == 4)
-                        <p class="bg-red-600 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
+                        <p class="bg-orange-500 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
                             Pendaftaran Hampir Tutup!
                             <br>
                             Tutup: {{ date('d/m/Y - H:i ', strtotime($tutup)) }}
@@ -32,8 +33,6 @@
                     @else
                         <p class="bg-red-600 text-white font-medium rounded-lg text-base px-5 py-2 me-2 mb-4">
                             Pendaftaran Ditutup!
-                            <br>
-                            Tutup: {{ date('d/m/Y - H:i ', strtotime($tutup)) }}
                         </p>
                     @endif
                     {{-- <div

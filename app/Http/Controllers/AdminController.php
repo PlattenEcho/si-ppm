@@ -44,15 +44,16 @@ class AdminController extends Controller
         $days = $toDate->diffInDays($fromDate);
 
         if ($pengaturan->buka_tidak == 1) {
-            $countPendaftaran = Pendaftaran::whereBetween('created_at', [$pengaturan->tanggal_buka, $pengaturan->tanggal_tutup])->where('periode', $pengaturan->periode)->count();
-            if ($countPendaftaran >= $pengaturan->kuota) {
-                $status = 2; //Kuota Habis
-            } else if ($pengaturan->kuota - $countPendaftaran < 30) {
-                $status = 0;
+            $countPendaftaran = Pendaftaran::whereBetween('created_at', [$pengaturan->tanggal_buka, $pengaturan->tanggal_tutup])->where('periode', $periode)->count();
+            if  ($toDate->isPast())  {
+                $status = 2; //Tutup, Tanggal Lewat
+            } else if ($countPendaftaran >= $pengaturan->kuota)  {
+                $status = 2;//Ditutup, Kuota Habis
+            } 
+            else if ($pengaturan->kuota - $countPendaftaran < 30) {
+                $status = 0; //Buka, Hampir Habis
             } else if ($days < 10 && !$toDate->isPast()) {
-                $status = 4;
-            } else if ($toDate->isPast()) {
-                $status = 2;//Ditutup
+                $status = 4;  //Buka, Hampir Tutup
             } else {
                 $status = 1; //Kuota Ada
             }
@@ -65,12 +66,18 @@ class AdminController extends Controller
         $seleksi = Pendaftaran::where('status_pendaftaran', 4)->where('periode', $periode)->count();
         $diterima = Pendaftaran::where('status_pendaftaran', 5)->where('periode', $periode)->count();
         $ditolak = Pendaftaran::where('status_pendaftaran', 6)->where('periode', $periode)->count();
+        $countPendaftaran = Pendaftaran::where('periode', $periode)->count();
+
+        $countByPeriode = Pendaftaran::where('periode', $periode)->count();
+
+        $sisaKuota = $pengaturan->kuota - $countByPeriode;
+
         $data = [
             'labels' => ['Diverifikasi', 'Belum Verifikasi', 'Seleksi', 'Diterima', 'Ditolak'],
             'data' => [$sudahVerifikasi, $belumVerifikasi, $seleksi, $diterima, $ditolak],
         ];
 
-        return view('admin.dashboard', compact('status', 'data', 'periode', 'pengaturan', 'belumVerifikasi', 'sudahVerifikasi', 'seleksi', 'diterima', 'ditolak', 'sortedMonthlyData'));
+        return view('admin.dashboard', compact('countPendaftaran','status', 'data', 'periode', 'pengaturan', 'belumVerifikasi', 'sudahVerifikasi', 'seleksi', 'diterima', 'ditolak', 'sortedMonthlyData', 'sisaKuota'));
     }
 
     public function viewDaftarPeserta()
@@ -217,23 +224,28 @@ class AdminController extends Controller
     }
 
     public function updatePengumuman(Request $request)
-    {
-        $validatedData = $request->validate(
-            [
-                'title' => 'required|string',
-                'no_telp' => 'required|numeric',
-                'nama_kontak' => 'required|string',
-                'link' => 'required|string',
-                'image' => 'required|mimes:jpg,jpeg,png|max:4096',
-            ]
-        );
+{
+    $validatedData = $request->validate([
+        'title' => 'required|string',
+        'no_telp' => 'required|numeric',
+        'nama_kontak' => 'required|string',
+        'link' => 'required|string',
+        'image' => 'nullable|mimes:jpg,jpeg,png|max:4096', 
+    ]);
 
+    $pengumuman = Pengumuman::first();
+
+    if ($request->hasFile('image')) {
         $imageExtension = $request->file('image')->extension();
         $imageName = 'image_pengumuman.' . $imageExtension;
         $validatedData['image'] = $request->file('image')->storeAs('image_pengumuman', $imageName, 'public');
-
-        Pengumuman::first()->update($validatedData);
-
-        return redirect('/admin/pengaturan')->with("success", "Pengumuman berhasil diubah");
+    } else {
+        $validatedData['image'] = $pengumuman->image;
     }
+
+    $pengumuman->update($validatedData);
+
+    return redirect('/admin/pengaturan')->with("success", "Pengumuman berhasil diubah");
+}
+
 }

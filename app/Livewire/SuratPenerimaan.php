@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Mail\SuratPenerimaanMail;
 use App\Models\Pendaftaran;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
@@ -24,6 +26,8 @@ class SuratPenerimaan extends ModalComponent
     public $tanggal_surat_magang;
     public $loading = false;
     public $listeners = ['refresh-me' => 'render'] ;
+
+    public bool $loadingState = false;
 
     public function mount($pendaftaranId)
     {
@@ -51,7 +55,7 @@ class SuratPenerimaan extends ModalComponent
 
     public function createSuratPenerimaan()
     {
-        $this->loading = true;
+        $this->loadingState = true;
         $this->validate([
             'no_surat' => 'required',
             'kepada' => 'required',
@@ -94,14 +98,14 @@ class SuratPenerimaan extends ModalComponent
             'file' => "surat_penerimaan/" . $this->pendaftaran->name . '_Surat Penerimaan Diskominfo.pdf',
         ]);
 
-
+        Mail::to($this->pendaftaran->email)->send(new SuratPenerimaanMail($this->pendaftaran->name, "surat_penerimaan/" . $this->pendaftaran->name . '_Surat Penerimaan Diskominfo.pdf'));
         return redirect()->to('/admin/daftar-peserta')->with('success', $this->pendaftaran->name . ' - surat penerimaan dibuat!');
 
     }
 
     public function editSuratPenerimaan()
     {
-        $this->loading = true;
+        $this->loadingState = true;
         $this->validate([
             'no_surat' => 'required',
             'kepada' => 'required',

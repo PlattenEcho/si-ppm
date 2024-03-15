@@ -178,9 +178,11 @@
                 Formulir
                 dengan tanda (*) wajib untuk diisi</p>
             <hr class="mb-4" />
-            <button type="submit" wire:click='createSuratPenerimaan'
+            <button type="submit" wire:click='createSuratPenerimaan' wire:loading.attr="disabled"
+                style="pointer-events: {{ $loadingState ? 'none' : 'auto' }};"
                 class="ml-auto text-white justify-end bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Buat Surat Penerimaan
+                <span wire:loading wire:target="createSuratPenerimaan" class="animate-spin">&#x21bb;</span>
+                <span wire:loading.remove>Create Surat</span>
             </button>
         </div>
     @else
@@ -333,13 +335,16 @@
                         Formulir
                         dengan tanda (*) wajib untuk diisi</p>
                     <hr class="mb-4" />
-                    <button type="submit" wire:click='editSuratPenerimaan'
+                    <button type="submit" wire:click='editSuratPenerimaan' wire:loading.attr="disabled"
+                        style="pointer-events: {{ $loadingState ? 'none' : 'auto' }};"
                         class="ml-auto text-white justify-end bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Edit Surat
+                        <span wire:loading wire:target="editSuratPenerimaan" class="animate-spin">&#x21bb;</span>
+                        <span wire:loading.remove>Edit Surat</span>
                     </button>
-                    <button type="submit" wire:click='download'
+                    <button type="submit" wire:click='download' wire:loading.attr="disabled"
                         class="ml-auto text-white justify-end bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Download
+                        <span wire:loading wire:target="download" class="animate-spin">&#x21bb;</span>
+                        <span wire:loading.remove>Download</span>
                     </button>
                 </div>
             </div>

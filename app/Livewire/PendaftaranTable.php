@@ -19,10 +19,12 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 final class PendaftaranTable extends PowerGridComponent
 {
     use WithExport;
+    public string $sortField = 'created_at';
+    
+    public string $sortDirection = 'desc';
 
     public function setUp(): array
     {
-        $this->showCheckBox('id_pendaftaran');
 
         return [
             Header::make()->showSearchInput(),
@@ -33,7 +35,6 @@ final class PendaftaranTable extends PowerGridComponent
     }
 
     public string $primaryKey = 'pendaftaran.id_pendaftaran';
-    public string $sortField = 'pendaftaran.id_pendaftaran';
 
     public function datasource(): Builder
     {
@@ -48,6 +49,7 @@ final class PendaftaranTable extends PowerGridComponent
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
+            ->addColumn('periode')
             ->addColumn('id_pendaftaran')
             ->addColumn('id_user')
             ->addColumn('name')
@@ -75,10 +77,11 @@ final class PendaftaranTable extends PowerGridComponent
     public function columns(): array
     {
         return [
+            Column::make('Periode', 'periode')
+                ->sortable(),
             Column::make('Id pendaftaran', 'id_pendaftaran')
                 ->sortable()
                 ->searchable(),
-            Column::make('Id user', 'id_user'),
             Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
@@ -94,7 +97,6 @@ final class PendaftaranTable extends PowerGridComponent
             Column::action('Action')
         ];
     }
-
     public function filters(): array
     {
         return [
@@ -102,6 +104,10 @@ final class PendaftaranTable extends PowerGridComponent
             Filter::inputText('nim')->operators(['contains']),
             Filter::inputText('alamat')->operators(['contains']),
             Filter::inputText('jenjang')->operators(['contains']),
+            Filter::select('periode', 'periode')
+                ->dataSource(Pendaftaran::select('periode')->distinct()->get()->toArray())
+                ->optionValue('periode')
+                ->optionLabel('periode'),
             Filter::select('universitas', 'universitas')
                 ->dataSource(Pendaftaran::select('universitas')->distinct()->get()->toArray())
                 ->optionValue('universitas')

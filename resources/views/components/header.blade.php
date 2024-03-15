@@ -85,25 +85,31 @@
                             @else
                             class="flex items-center py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700" @endif>
                             Pendaftaran
-                            @if (Auth::check() &&
-                                    Auth::user()->pendaftaran()->exists() &&
-                                    Auth::user()->pendaftaran->periode == Pengaturan::first()->periode)
-                                <svg class="w-4 h-4 text-red-500 dark:text-white ml-1" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z" />
-                                </svg>
+                            @if (Auth::check() && Auth::user()->pendaftaran()->exists())
+                                @foreach (Auth::user()->pendaftaran as $pendaftaran)
+                                    @if ($pendaftaran->periode == Pengaturan::first()->periode)
+                                        <svg class="w-4 h-4 text-red-500 dark:text-white ml-1" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z" />
+                                        </svg>
+                                    @endif
+                                @endforeach
                             @endif
 
                         </a>
                     </li>
 
                     <li>
-                        <a href="#panduan"
+                        <a @if (request()->routeIs('landing')) href="#panduan"
+                            @else
+                            href="http://127.0.0.1:8000/#panduan" @endif
                             class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Panduan</a>
                     </li>
                     <li>
-                        <a href="#contact"
+                        <a @if (request()->routeIs('landing')) href="#contact"
+                            @else
+                            href="http://127.0.0.1:8000/#panduan" @endif
                             class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
                     </li>
                 </ul>

@@ -7,7 +7,7 @@ Terima kasih sudah mendaftar magang di Diskominfo Semarang. Jangan lupa untuk ce
 </p>
 
 {{-- Status Pendaftaran: **{{ $status }}** --}}
-<x-mail::button :url="''">
+<x-mail::button :url="'http://127.0.0.1:8000/cek-status'">
 Cek Status
 </x-mail::button>
 

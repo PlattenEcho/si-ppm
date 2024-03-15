@@ -23,7 +23,7 @@
             <div class="flex flex-col overflow-y-auto md:flex-row">
                 <div class="h-32 md:h-auto md:w-1/2">
                     <img aria-hidden="true" class="object-cover w-full h-full dark:hidden"
-                        src="https://i.pinimg.com/originals/39/87/be/3987beb4289cf7a45b94e2e2a73aaeb9.jpg"
+                        src="https://images.unsplash.com/photo-1625967445155-bf8cc0412e9b?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="Office" />
                     <img aria-hidden="true" class="hidden object-cover w-full h-full dark:block"
                         src="https://i.pinimg.com/originals/39/87/be/3987beb4289cf7a45b94e2e2a73aaeb9.jpg"
@@ -82,12 +82,12 @@
                                         });
                                     });
                                 </script>
-                                <p class="mt-2 text-right">
+                                {{-- <p class="mt-2 text-right">
                                     <a class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
                                         href="#">
                                         Forgot your password?
                                     </a>
-                                </p>
+                                </p> --}}
                             </div>
                             <button type="submit"
                                 class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Log

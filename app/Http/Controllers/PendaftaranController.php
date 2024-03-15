@@ -23,7 +23,9 @@ class PendaftaranController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->pendaftaran()->exists() && $user->pendaftaran->periode == Pengaturan::first()->periode) {
+            $pengaturan = Pengaturan::first();
+            $pendaftaranSatuPeriode =  Pendaftaran::where('id_user', $user->id)->where('periode', $pengaturan->periode);
+            if ($pendaftaranSatuPeriode->exists()) {
                 return redirect('/pendaftaran/cek-status');
             }
         }
@@ -153,11 +155,11 @@ class PendaftaranController extends Controller
         $user = Auth::user();
         $pengumuman = Pengumuman::first();
 
-        if (!$user->pendaftaran()->exists()) {
+        if (!$user->pendaftaran()->where('periode', $pengumuman->periode)->exists()) {
             return redirect('/pendaftaran')->with("error", "Anda belum mendaftar!");
         }
-
-        $pendaftaran = $user->pendaftaran;
+        
+        $pendaftaran = $user->pendaftaran->where('periode', $pengumuman->periode);
         $riwayatPendaftaran = $pendaftaran->riwayatPendaftaran;
         
         $diterima = $riwayatPendaftaran->where('status_pendaftaran', 'Diterima');

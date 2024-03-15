@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PendaftaranController;
+use App\Livewire\SuratPenerimaan;
 use App\Models\Pendaftaran;
 use App\Models\Pengaturan;
 use Illuminate\Support\Carbon;
@@ -31,16 +32,16 @@ Route::get('/', function () {
 
     if ($pengaturan->buka_tidak == 1) {
         $countPendaftaran = Pendaftaran::whereBetween('created_at', [$pengaturan->tanggal_buka, $pengaturan->tanggal_tutup])->where('periode', $pengaturan->periode)->count();
-        if ($countPendaftaran >= $pengaturan->kuota) {
-            $status = 2; //Kuota Habis
-        }else if($pengaturan->kuota - $countPendaftaran < 30){
-            $status = 0;
-        } else if($days < 10 &&  !$toDate->isPast()){
-            $status = 4; 
-        } else if($toDate->isPast()){
-            $status = 2;//Ditutup
-        }
-        else {
+        if  ($toDate->isPast())  {
+            $status = 2; //Tutup, Tanggal Lewat
+        } else if ($countPendaftaran >= $pengaturan->kuota)  {
+            $status = 2;//Ditutup, Kuota Habis
+        } 
+        else if ($pengaturan->kuota - $countPendaftaran < 30) {
+            $status = 0; //Buka, Hampir Habis
+        } else if ($days < 10 && !$toDate->isPast()) {
+            $status = 4;  //Buka, Hampir Tutup
+        } else {
             $status = 1; //Kuota Ada
         }
     } else {
@@ -124,5 +125,12 @@ Route::get('/view-code-email', function () {
 Route::get('/admin-pendaftaran-mail', function () {
     $pendaftaran = Pendaftaran::firstorfail();
     $mail = new App\Mail\AdminPendaftaranMail($pendaftaran);
+    return $mail->render();
+});
+
+Route::get('/surat-penerimaan-mail', function () {
+    $name = "Weladalah";
+    $suratPenerimaan = \App\Models\SuratPenerimaan::firstorfail();
+    $mail = new App\Mail\SuratPenerimaanMail($name, $suratPenerimaan->file);
     return $mail->render();
 });

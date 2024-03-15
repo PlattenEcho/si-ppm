@@ -62,7 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function pendaftaran()
     {
-        return $this->hasOne(Pendaftaran::class, 'id_user');
+        return $this->hasMany(Pendaftaran::class, 'id_user');
     }
 
 

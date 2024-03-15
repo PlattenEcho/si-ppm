@@ -12,7 +12,7 @@
                 <!-- Card -->
                 <div class="flex items-center shadow-md p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                     <div
-                        class="p-3 mr-4   {{ optional($status) == '2' ?  'text-red-600 bg-red-100' : 'text-green-500 bg-green-100' }}
+                        class="p-3 mr-4   {{ ($status) == '2' ?  'text-red-600 bg-red-100' : 'text-green-500 bg-green-100' }}
                      rounded-full dark:text-orange-100 dark:bg-orange-500">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path
@@ -27,7 +27,7 @@
                             @if (!$pengaturan)
                                 -
                             @else
-                                {{ optional($status) == '2' ? 'Tutup' : 'Buka' }} - Per. {{ $periode }}
+                            {{ $status == 2 ? 'Tutup' : 'Buka' }} - Per. {{ $periode }}
                             @endif
                         </p>
                     </div>
@@ -97,10 +97,10 @@
                     </div>
                     <div>
                         <p class=" text-sm font-medium text-gray-600 dark:text-gray-400">
-                            Kuota
+                           Sisa Kuota
                         </p>
                         <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                            35
+                            {{ $sisaKuota }}
                         </p>
                     </div>
                 </div>
